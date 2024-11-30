@@ -17,9 +17,9 @@ export default function ReduxProvider({
   }
   useEffect(() => {
     const persistedItems: StateType = loadState("card");
-    const initialState: StateType = persistedItems?.items.length
-      ? persistedItems
-      : { items: [] };
+    const initialState: StateType = !persistedItems?.items.length
+      ? { items: [] }
+      : persistedItems;
 
     if (storeRef.current) {
       storeRef.current.dispatch(initializeState(initialState));

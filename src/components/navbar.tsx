@@ -7,6 +7,7 @@ import { Badge } from "./ui/badge";
 import MaxWidthWrapper from "./max-width-wrapper";
 import { useCardItems } from "@/redux/redux-store";
 import { useSidebar } from "@/components/ui/sidebar";
+import { usePathname } from "next/navigation";
 
 export const navLinks = [
   { title: "خانه", src: "/" },
@@ -17,12 +18,19 @@ export const navLinks = [
 ];
 
 const Navbar = () => {
+  const pathName = usePathname();
+  const isFloated = pathName === "/";
+
   const items = useCardItems();
 
   const { setOpen } = useSidebar();
 
   return (
-    <header className="w-full h-20 absolute left-0 top-0 z-30 flex items-center justify-center text-secondary">
+    <header
+      className={`${
+        isFloated ? "absolute left-0 top-0 z-30" : "bg-primary"
+      } w-full h-20 flex items-center justify-center text-secondary`}
+    >
       <MaxWidthWrapper maxWidth="max-w-screen-xl">
         <div className="w-full p-5 flex items-center justify-between">
           <Image src="/asset/logo-1.png" alt="logo" height={80} width={80} />

@@ -31,7 +31,7 @@ export const db: DbType = {
   bycicles: [
     {
       title: "Kryo X26 MTB – Model X",
-      slug: "Kryo X26 MTB – Model X",
+      slug: "Kryo-X26-MTB-Model-X",
       details:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       description:
@@ -57,7 +57,7 @@ export const db: DbType = {
     },
     {
       title: "Kryo X26 MTB – Model Z",
-      slug: "Kryo X26 MTB – Model Z",
+      slug: "Kryo-X26-MTB-Model-Z",
       details:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       description:
@@ -74,7 +74,7 @@ export const db: DbType = {
     },
     {
       title: "Kryo X26 MTB – Model Y",
-      slug: "Kryo X26 MTB – Model Y",
+      slug: "Kryo-X26-MTB-Model-Y",
       details:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       description:
@@ -91,7 +91,7 @@ export const db: DbType = {
     },
     {
       title: "Kryo X26 MTB – Model K",
-      slug: "Kryo X26 MTB – Model K",
+      slug: "Kryo-X26-MTB-Model-K",
       details:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       description:
@@ -109,8 +109,8 @@ export const db: DbType = {
   ],
   accessories: [
     {
-      slug: "Bicycle Helmet Sky Blue",
       title: "Bicycle Helmet Sky Blue",
+      slug: "Bicycle-Helmet-Sky-Blue",
       category: {
         en: "accessory",
         fa: "لوازم",
@@ -128,8 +128,8 @@ export const db: DbType = {
       ],
     },
     {
-      slug: "Bicycle Helmet Sky Fire",
       title: "Bicycle Helmet Sky Fire",
+      slug: "Bicycle-Helmet-Sky-Fire",
       category: {
         en: "accessory",
         fa: "لوازم",
@@ -147,8 +147,8 @@ export const db: DbType = {
       ],
     },
     {
-      slug: "Bicycle Gloves Gold",
       title: "Bicycle Gloves Gold",
+      slug: "Bicycle-Gloves-Gold",
       category: {
         en: "accessory",
         fa: "لوازم",
@@ -166,8 +166,8 @@ export const db: DbType = {
       ],
     },
     {
-      slug: "Bicycle Gloves Blue",
       title: "Bicycle Gloves Blue",
+      slug: "Bicycle-Gloves-Blue",
       category: {
         en: "accessory",
         fa: "لوازم",
@@ -185,8 +185,8 @@ export const db: DbType = {
       ],
     },
     {
-      slug: "Bicycle Gloves pink",
       title: "Bicycle Gloves pink",
+      slug: "Bicycle-Gloves-pink",
       category: {
         en: "accessory",
         fa: "لوازم",

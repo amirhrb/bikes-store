@@ -52,8 +52,6 @@ const cardSlice = createSlice({
       const localState = action.payload.items.filter((item) => {
         return Object.values(item.sizes).some((size) => size.count > 0);
       });
-      console.log();
-
       state.items.push(...localState);
     },
     addCardItem: (state, action: PayloadAction<AddItemType>) => {
