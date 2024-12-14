@@ -8,7 +8,7 @@ import { aparat } from "@/app/fonts/aparat";
 const Footer = () => {
   return (
     <footer className="flex justify-center  bg-[#161616] text-neutral-50">
-      <MaxWidthWrapper maxWidth="max-w-screen-lg" className="px-10">
+      <MaxWidthWrapper maxWidth="max-w-screen-xl" className="px-10">
         <div className="py-24 grid justify-center grid-cols-1 sm:grid-cols-2 md:grid-cols-4 border-b-2 border-b-neutral-800">
           <div className="h-full flex flex-col items-center sm:items-start">
             <Image

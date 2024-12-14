@@ -20,7 +20,7 @@ const SideBarItem = ({ item }: { item: CardItemType }) => {
   };
   return (
     <div className="w-full flex items-start justify-between gap-4">
-      <Link href="/" className="self-center">
+      <Link href={`/products/${item.slug}`} className="self-center">
         <Image
           src={item.image}
           alt={item.title}
@@ -30,11 +30,11 @@ const SideBarItem = ({ item }: { item: CardItemType }) => {
         />
       </Link>
       <div className="flex-1 flex flex-col justify-between items-start">
-        <span className="text-muted text-sm">{item.category}</span>
+        <span className="text-muted text-sm">{item.category.en}</span>
         <h2
           className={`${racingSans.className} scroll-m-20 pb-2 text-base font-semibold tracking-tight first:mt-0`}
         >
-          <Link href="/">{item.title}</Link>
+          <Link href={`/products/${item.slug}`}>{item.title}</Link>
         </h2>
         <div className="flex flex-col gap-2">
           {item.sizes.nosize.count > 0 && (

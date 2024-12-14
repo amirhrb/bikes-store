@@ -13,6 +13,7 @@ import {
   addCardItem,
   decreaseItemCount,
   increaseItemCount,
+  sizesArray,
 } from "@/redux/redux-slices";
 import { useToast } from "@/hooks/use-toast";
 import { useCardItemBySlug } from "@/redux/redux-store";
@@ -24,17 +25,19 @@ type SizeType = {
 
 const ItemCard = ({ item }: { item: ItemTypes }) => {
   const dispatch = useDispatch();
-  const itemBySlug = useCardItemBySlug(item.slug);
+  const cardItem = useCardItemBySlug(item.slug);
 
   const { toast } = useToast();
 
+  const isNosizeItem = item.sizes.nosize.price ? true : false;
+
   const [activeType, setActiveType] = useState<SizeType>({
     size: "nosize",
-    price: item.price || null,
+    price: isNosizeItem ? item.sizes.nosize.price : null,
   });
 
   const buyItem = () => {
-    if (!item.price && !activeType.price) {
+    if (!activeType.price) {
       toast({
         variant: "destructive",
         title: "یه مشکلی پیش اومده",
@@ -48,17 +51,17 @@ const ItemCard = ({ item }: { item: ItemTypes }) => {
           category: item.category.en,
           image: item.image,
           title: item.title,
-          price: activeType.price || item.price || 0,
+          price: activeType.price || 0,
           size: activeType.size,
         })
       );
     }
   };
   const increamentItem = () => {
-    if (itemBySlug) {
+    if (cardItem) {
       dispatch(
         increaseItemCount({
-          slug: itemBySlug.slug,
+          slug: cardItem.slug,
           size: activeType.size,
           price: activeType.price || 0,
         })
@@ -66,22 +69,23 @@ const ItemCard = ({ item }: { item: ItemTypes }) => {
     }
   };
   const decreamentItem = () => {
-    if (itemBySlug) {
+    if (cardItem) {
       dispatch(
-        decreaseItemCount({ slug: itemBySlug.slug, size: activeType.size })
+        decreaseItemCount({ slug: cardItem.slug, size: activeType.size })
       );
     }
   };
-  const sortedPrices = item.types
-    ? [...item.types.map((type) => type.price)].sort()
-    : [];
+  const sortedPrices = [...Object.values(item.sizes)]
+    .map((size) => size.price)
+    .filter((price) => price !== null)
+    .sort();
 
   const minPrice = sortedPrices[0];
   const maxPrice = sortedPrices[sortedPrices.length - 1];
   return (
     <div className="flex flex-col items-start justify-between gap-2">
       <div className="group relative w-full cursor-pointer">
-        <Link href="/">
+        <Link href={`/products/${item.slug}`}>
           <Image
             src={item.image}
             alt={item.title}
@@ -90,8 +94,8 @@ const ItemCard = ({ item }: { item: ItemTypes }) => {
             height={100}
           />
         </Link>
-        {itemBySlug?.sizes[activeType.size].count &&
-        itemBySlug?.sizes[activeType.size].count > 0 ? (
+        {cardItem?.sizes[activeType.size].count &&
+        cardItem?.sizes[activeType.size].count > 0 ? (
           <div className="absolute right-4 top-4 flex gap-2">
             <button onClick={increamentItem}>
               <Plus className="opacity-0 group-hover:opacity-100 size-8 p-2 bg-neutral-200 hover:bg-neutral-100 text-neutral-800 rounded-full" />
@@ -110,13 +114,13 @@ const ItemCard = ({ item }: { item: ItemTypes }) => {
       <h2
         className={`${racingSans.className} scroll-m-20 pb-2 text-base font-semibold tracking-tight first:mt-0`}
       >
-        <Link href="/">{item.title}</Link>
+        <Link href={`/products/${item.slug}`}>{item.title}</Link>
       </h2>
       <Rating rate={item.rating} />
-      {item.price ? (
+      {item.sizes.nosize.price ? (
         <span>
           ریال
-          {item.price.toLocaleString("en-US", {
+          {item.sizes.nosize.price.toLocaleString("en-US", {
             useGrouping: true,
           })}
         </span>
@@ -140,27 +144,27 @@ const ItemCard = ({ item }: { item: ItemTypes }) => {
         </span>
       )}
       <div className="flex gap-2">
-        {item.types &&
-          item.types.map((type) => (
+        {!isNosizeItem &&
+          sizesArray.map((size) => (
             <Button
-              key={type.size}
+              key={size}
               onClick={() =>
                 setActiveType({
-                  size: type.size,
-                  price: type.price,
+                  size,
+                  price: item.sizes[size].price,
                 })
               }
               variant="outline"
               className={`
                 hover:border-neutral-500
                 ${
-                  type.size === activeType.size
+                  activeType.size === size
                     ? "!border-neutral-800"
                     : "border-input"
                 }
               min-w-6 min-h-6 h-auto px-2 py-1 text-xs text-foreground hover:text-foreground hover:bg-background rounded-sm`}
             >
-              {type.size}
+              {size}
             </Button>
           ))}
       </div>

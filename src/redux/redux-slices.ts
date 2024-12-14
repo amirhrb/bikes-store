@@ -11,7 +11,10 @@ export type CardItemType = {
     XL: { price: number; count: number };
     nosize: { price: number; count: number };
   };
-  category: string;
+  category: {
+    en: string;
+    fa: string;
+  };
 };
 
 export type StateType = {
@@ -55,13 +58,15 @@ const cardSlice = createSlice({
       state.items.push(...localState);
     },
     addCardItem: (state, action: PayloadAction<AddItemType>) => {
-      if (!state.items.some((i) => i.slug === action.payload.slug)) {
+      if (!state.items.find((i) => i.slug === action.payload.slug)) {
         const sizes = {
           L: { price: 0, count: 0 },
           M: { price: 0, count: 0 },
           XL: { price: 0, count: 0 },
           nosize: { price: 0, count: 0 },
         };
+        console.log(action.payload);
+
         sizes[action.payload.size].price = action.payload.price;
         sizes[action.payload.size].count = 1;
         const cardItemData = {
@@ -69,7 +74,7 @@ const cardSlice = createSlice({
           slug: action.payload.slug,
           image: action.payload.image,
           sizes,
-          category: action.payload.category,
+          category: { en: action.payload.category, fa: "" },
         };
         state.items.push(cardItemData);
         saveState(state, "card");

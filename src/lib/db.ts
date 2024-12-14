@@ -13,15 +13,20 @@ export type ItemTypes = {
   description: string;
   image: string;
   rating: number;
-  price?: number;
   reviews: [] | Review[];
-  types?: { size: "L" | "M" | "XL"; price: number }[];
+  sizes: {
+    L: { price: number | null };
+    M: { price: number | null };
+    XL: { price: number | null };
+    nosize: { price: number | null };
+  };
   category: {
     en: string;
     fa: string;
   };
   tags?: [] | string[];
 };
+
 type DbType = {
   bycicles: ItemTypes[];
   accessories: ItemTypes[];
@@ -38,6 +43,12 @@ export const db: DbType = {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       image: "/asset/bicycle-1.jpg",
       rating: 2,
+      sizes: {
+        nosize: { price: 350 },
+        M: { price: null },
+        L: { price: null },
+        XL: { price: null },
+      },
       reviews: [
         {
           id: "dd3442542245",
@@ -48,7 +59,6 @@ export const db: DbType = {
           title: "The current kind of dog shit",
         },
       ],
-      price: 350,
       category: {
         en: "bycicle",
         fa: "دوچرخه",
@@ -65,7 +75,12 @@ export const db: DbType = {
       image: "/asset/bicycle-4.jpg",
       reviews: [],
       rating: 3.2,
-      price: 350,
+      sizes: {
+        nosize: { price: 350 },
+        M: { price: null },
+        L: { price: null },
+        XL: { price: null },
+      },
       category: {
         en: "bycicle",
         fa: "دوچرخه",
@@ -82,7 +97,12 @@ export const db: DbType = {
       image: "/asset/bicycle-5.jpg",
       reviews: [],
       rating: 5,
-      price: 350,
+      sizes: {
+        nosize: { price: 350 },
+        M: { price: null },
+        L: { price: null },
+        XL: { price: null },
+      },
       category: {
         en: "bycicle",
         fa: "دوچرخه",
@@ -99,7 +119,12 @@ export const db: DbType = {
       image: "/asset/bicycle-7.jpg",
       reviews: [],
       rating: 4.5,
-      price: 3558000,
+      sizes: {
+        nosize: { price: 356000 },
+        M: { price: null },
+        L: { price: null },
+        XL: { price: null },
+      },
       category: {
         en: "bycicle",
         fa: "دوچرخه",
@@ -121,11 +146,12 @@ export const db: DbType = {
       image: "/asset/helmet-3.jpg",
       reviews: [],
       rating: 4.5,
-      types: [
-        { size: "M", price: 19000 },
-        { size: "L", price: 29000 },
-        { size: "XL", price: 49000 },
-      ],
+      sizes: {
+        nosize: { price: null },
+        M: { price: 190000 },
+        L: { price: 290000 },
+        XL: { price: 490000 },
+      },
     },
     {
       title: "Bicycle Helmet Sky Fire",
@@ -140,11 +166,12 @@ export const db: DbType = {
       image: "/asset/helmet-4.jpg",
       reviews: [],
       rating: 1.5,
-      types: [
-        { size: "M", price: 39000 },
-        { size: "L", price: 69000 },
-        { size: "XL", price: 79000 },
-      ],
+      sizes: {
+        nosize: { price: null },
+        M: { price: 190000 },
+        L: { price: 290000 },
+        XL: { price: 490000 },
+      },
     },
     {
       title: "Bicycle Gloves Gold",
@@ -159,11 +186,12 @@ export const db: DbType = {
       image: "/asset/accessories-3.jpg",
       reviews: [],
       rating: 4,
-      types: [
-        { size: "M", price: 39000 },
-        { size: "L", price: 69000 },
-        { size: "XL", price: 79000 },
-      ],
+      sizes: {
+        nosize: { price: null },
+        M: { price: 190000 },
+        L: { price: 290000 },
+        XL: { price: 490000 },
+      },
     },
     {
       title: "Bicycle Gloves Blue",
@@ -178,11 +206,12 @@ export const db: DbType = {
       image: "/asset/accessories-4.jpg",
       reviews: [],
       rating: 3.5,
-      types: [
-        { size: "M", price: 39000 },
-        { size: "L", price: 69000 },
-        { size: "XL", price: 79000 },
-      ],
+      sizes: {
+        nosize: { price: null },
+        M: { price: 190000 },
+        L: { price: 290000 },
+        XL: { price: 490000 },
+      },
     },
     {
       title: "Bicycle Gloves pink",
@@ -197,11 +226,12 @@ export const db: DbType = {
       image: "/asset/accessories-5.jpg",
       reviews: [],
       rating: 4.2,
-      types: [
-        { size: "M", price: 39000 },
-        { size: "L", price: 69000 },
-        { size: "XL", price: 79000 },
-      ],
+      sizes: {
+        nosize: { price: null },
+        M: { price: 190000 },
+        L: { price: 290000 },
+        XL: { price: 490000 },
+      },
     },
   ],
 };
